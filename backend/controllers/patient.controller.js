@@ -3,11 +3,21 @@ import {
   getAllPatients,
   getPatient,
 } from "../services/patient.service.js";
+import { generateTokenandSetCookie } from "../utils/generateAndSetCookie.js";
 import logger from "../utils/logger.js";
 
 export async function registerPatient(req, res) {
   try {
+    const nationalID = req.body.nationalID;
+
+    const existingPatient = await getPatient({ nationalID });
+    if (existingPatient) {
+      generateTokenandSetCookie(existingPatient._id, res);
+      return res.send("Patient found in DB");
+    }
+
     const newPatient = await addPatient(req.body);
+    generateTokenandSetCookie(newPatient._id, res);
     res.send(newPatient);
   } catch (error) {
     logger.error(`registerPatient Controller Error: ${error}`);
