@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Balance Sheet</title>
+    <link rel="stylesheet" href="css/records.css" />
+  </head>
+  <body>
+    <main>
+      <section>
+        <h1>
+          <span class="flex">
+            <span>Filtered by date</span>
+            <span>Patient Records</span>
+          </span>
+          <form action="">
+            <label>
+              <input type="date" />
+            </label>
+          </form>
+        </h1>
+        <div id="fields" aria-hidden="true">
+          <span class="year">Age</span>
+          <span class="year">BMI</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <td></td>
+                <th><span class="sr-only year">Age</span></th>
+                <th><span class="sr-only year">BMI</span></th>
+                <th class="current"><span class="sr-only year">2021</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="data">
+                <th>
+                  <a href="#">Cash Matty</a>
+                  <span class="description"></span>
+                </th>
+                <td>$30</td>
+                <td class="current">$28</td>
+              </tr>
+              <tr class="data">
+                <th>
+                  <a href="#">Checking Money</a>
+                  <span class="description"></span>
+                </th>
+                <td>$56</td>
+                <td class="current">$53</td>
+              </tr>
+              <tr class="data">
+                <th>
+                  <a href="#">Savings Annotation</a>
+                  <span class="description"></span>
+                </th>
+                <td>$650</td>
+                <td class="current">$728</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
