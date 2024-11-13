@@ -1,4 +1,6 @@
 import express from "express";
+import patientRoutes from "./routes/patient.route.js";
+import recordRoutes from "./routes/record.route.js";
 
 const app = express();
 
@@ -11,5 +13,9 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/checkhealth", (req, res) => {
   res.status(200).json({ status: "OK" });
 });
+
+app.use("/patients", patientRoutes);
+
+app.use("/records", recordRoutes);
 
 export default app;

@@ -5,13 +5,11 @@ const patientSchema = new mongoose.Schema(
     firstName: {
       type: String,
       required: true,
-      unique: true,
     },
 
     lastName: {
       type: String,
       required: true,
-      unique: true,
     },
 
     dateOfBirth: {
@@ -19,15 +17,22 @@ const patientSchema = new mongoose.Schema(
       required: true,
     },
 
+    nationalID: {
+      type: String,
+      unique: true,
+      required: true,
+    },
+
     gender: {
       type: String,
       enum: ["male", "female", "prefer not to say"],
+      required: true,
     },
 
     records: {
       type: [mongoose.Schema.Types.ObjectId],
       ref: "Record",
-      index: true,
+      default: [],
     },
   },
   { timestamps: true },
