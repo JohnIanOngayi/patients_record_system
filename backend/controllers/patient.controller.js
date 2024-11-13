@@ -15,6 +15,17 @@ export async function registerPatient(req, res) {
   }
 }
 
-export async function fetchAllPatients(req, res) {}
+export async function fetchAllPatients(req, res) {
+  try {
+    const patients = await getAllPatients();
+    res.send(patients);
+  } catch (error) {
+    logger.error(`fetchAllPatients Controller Error: ${error}`);
+  }
+}
 
-export async function fetchPatient(req, res) {}
+export async function fetchPatient(req, res) {
+  const { id } = req.params;
+  const patient = await getPatient({ _id: id });
+  res.send(patient);
+}

@@ -19,6 +19,22 @@ export async function addPatient(input) {
   }
 }
 
-export async function getAllPatients(input) {}
+export async function getAllPatients(query) {
+  try {
+    const patients = await Patient.find(query);
+    return patients;
+  } catch (error) {
+    logger.error(`getAllPatients Service Error: ${error}`);
+    throw new Error(error);
+  }
+}
 
-export async function getPatient(input) {}
+export async function getPatient(query) {
+  try {
+    const patient = await Patient.findOne(query);
+    return patient;
+  } catch (error) {
+    logger.error(`getPatient Service Error: ${error}`);
+    throw new Error(error);
+  }
+}
