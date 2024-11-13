@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="css/reg.css" />
+  </head>
+  <body>
+    <h1>Registration Form</h1>
+    <p>Please fill out this form with the required information</p>
+    <form method="post" action="#">
+      <fieldset>
+        <label for="first-name"
+          >First Name:
+          <input id="first-name" name="first-name" type="text" required
+        /></label>
+        <label for="last-name"
+          >Last Name:
+          <input id="last-name" name="last-name" type="text" required
+        /></label>
+        <label for="dob"
+          >Date of Birth: <input id="dob" name="dob" type="date" required
+        /></label>
+        <label for="gender"
+          >Gender
+          <select id="gender" name="gender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="">Prefer not to say</option>
+          </select>
+        </label>
+      </fieldset>
+      <div class="form-buttons">
+        <input type="reset" value="Clear" />
+        <input type="submit" value="Submit" />
+      </div>
+    </form>
+  </body>
+</html>
