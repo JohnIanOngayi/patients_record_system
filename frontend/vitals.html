@@ -4,11 +4,12 @@
     <meta charset="UTF-8" />
     <title>Vitals Form</title>
     <link rel="stylesheet" href="css/vitals.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body>
     <h1>Vitals Form</h1>
     <p>Please fill out this form with the required information</p>
-    <form method="post" action="#">
+    <form method="post" action="http://localhost:5000/records/">
       <fieldset>
         <label for="recordDate"
           >Date: <input id="recordDate" name="recordDate" type="date" required
@@ -21,7 +22,7 @@
           <input id="weight" name="weight" type="number" min="7" required
         /></label>
         <label for="bmi"
-          >BMI:<input id="bmi" name="bmi" type="number" readonly value="25"
+          >BMI:<input id="bmi" name="bmi" type="number" readonly value="0"
         /></label>
       </fieldset>
       <fieldset>
@@ -87,5 +88,20 @@
         <input type="submit" value="Submit" />
       </div>
     </form>
+    <script>
+      $(document).ready(function () {
+        $("#height, #weight").on("input", function () {
+          let height = $("#height").val() / 100; // Convert cm to meters
+          let weight = $("#weight").val();
+
+          if (height && weight) {
+            let bmi = (weight / (height * height)).toFixed(2);
+            $("#bmi").val(bmi);
+          } else {
+            $("#bmi").val(0); // Set BMI to 0 if inputs are invalid
+          }
+        });
+      });
+    </script>
   </body>
 </html>

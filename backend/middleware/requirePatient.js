@@ -6,8 +6,10 @@ export async function requirePatient(req, res, next) {
   try {
     // jwt cookie value from current session request
     const token = req.cookies.jwt;
+    console.log(`Token`, token);
     if (!token)
       return res.status(401).json({ error: "Failed No Attached Patient" });
+    console.log("jwt", process.env.JWT_SECRET);
 
     // check if token is valid token
     const decoded = jwt.verify(token, process.env.JWT_SECRET);

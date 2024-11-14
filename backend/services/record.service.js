@@ -9,7 +9,7 @@ export async function addRecord(input) {
       date,
       height,
       weight,
-      BMI,
+      bmi,
       generalHealth,
       secondaryQuestion,
       comment,
@@ -20,7 +20,7 @@ export async function addRecord(input) {
       date: _date,
       height,
       weight,
-      BMI,
+      BMI: bmi,
       generalHealth,
       secondaryQuestion,
       comment,
@@ -34,7 +34,9 @@ export async function addRecord(input) {
 
 export async function getAllRecords(query) {
   try {
-    const records = await Record.find(query).sort({ createdAt: -1 });
+    const records = await Record.find(query)
+      .populate("patient")
+      .sort({ createdAt: -1 });
     return records;
   } catch (error) {
     logger.error(`getAllRecords Service Error: ${error}`);
@@ -44,7 +46,7 @@ export async function getAllRecords(query) {
 
 export async function getRecord(query) {
   try {
-    const record = await Record.findOne(query);
+    const record = await Record.findOne(query).populate("patient");
     return record;
   } catch (error) {
     logger.error(`getRecord Service Error: ${error}`);

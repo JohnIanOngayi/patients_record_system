@@ -2,8 +2,9 @@ import Patient from "../models/patient.model.js";
 import logger from "../utils/logger.js";
 
 export async function addPatient(input) {
-  const { firstName, lastName, nationalID, dateOfbirth, gender } = input;
-  const date = new Date(input.dateOfBirth);
+  const { firstName, lastName, nationalID, dateOfBirth, gender } = input;
+  console.log(dateOfBirth);
+  const date = new Date(dateOfBirth);
   try {
     const newPatient = await Patient.create({
       firstName,

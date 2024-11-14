@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Patient Records</title>
     <link rel="stylesheet" href="css/records.css" />
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body>
     <main>
@@ -16,8 +17,9 @@
           </span>
           <form action="">
             <label>
-              <input type="date" />
+              <input type="date" id="date" />
             </label>
+            <input type="submit" id="submit" />
           </form>
         </h1>
         <div id="fields" aria-hidden="true">
@@ -43,26 +45,41 @@
                 <td>$30</td>
                 <td class="current">$28</td>
               </tr>
-              <tr class="data">
-                <th>
-                  <a href="#">Checking Money</a>
-                  <span class="description"></span>
-                </th>
-                <td>$56</td>
-                <td class="current">$53</td>
-              </tr>
-              <tr class="data">
-                <th>
-                  <a href="#">Savings Annotation</a>
-                  <span class="description"></span>
-                </th>
-                <td>$650</td>
-                <td class="current">$728</td>
-              </tr>
             </tbody>
           </table>
         </div>
       </section>
     </main>
+    <script>
+      $(document).ready(function () {
+        $("#submit").click(function (e) {
+          e.preventDefault();
+          let date = $("#date").val();
+          console.log('Booyah')
+          $.ajax({
+            url: `http://localhost:5000/records/?date=${date}`,
+            type: "GET",
+            success: function (data) {
+              let records = data;
+              let fields = $("#fields");
+              fields.empty();
+              fields.append(
+                `<span class="year">Age</span><span class="year">BMI</span>`
+              );
+              let table = $("tbody");
+              table.empty();
+              records.forEach((record) => {
+                const age= new Date().getFullYear() - new Date(record.patient.dateOfBirth).getFullYear();
+                table.append(
+                  `<tr class="data"><th><a href="#">${record.patient.firstName} ${record.patient.lastName}</a><span class="description"></span></th><td>${
+                    age
+                  }</td><td class="current">${record.BMI}</td></tr>`
+                );
+              });
+            },
+          });
+        });
+      });
+    </script>
   </body>
 </html>

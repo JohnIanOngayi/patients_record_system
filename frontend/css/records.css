@@ -13,12 +13,12 @@ span[class~="sr-only"] {
 
 html {
   box-sizing: border-box;
-  background-color: #1b1b32;
+  background-color: #006da0;
 }
 
 body {
   font-family: sans-serif;
-  color: #0a0a23;
+  color: #3b3b4f;
   z-index: 10;
 }
 
@@ -55,7 +55,7 @@ section {
   position: sticky;
   z-index: 999;
   top: 0;
-  background: #1b1b32;
+  background: #006da0;
   color: #fff;
   padding: 0.5rem calc(1.25rem + 2px) 0.5rem 0;
   /* margin: 0 -2px; */
@@ -99,7 +99,7 @@ tbody th {
 }
 
 tr[class="total"] {
-  border-bottom: 4px double #0a0a23;
+  border-bottom: 4px double #3b3b4f;
   font-weight: bold;
 }
 
