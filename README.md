@@ -1,7 +1,34 @@
 # patients_record_system
 
-A Simple App That Records Patients' Hospital Visits
+A Simple Development App That Records Patients' Hospital Visits
 
-## The API
+## How to run
 
-[<img src="https://run.pstmn.io/button.svg" alt="Run In Postman" style="width: 128px; height: 32px;">](https://app.getpostman.com/run-collection/38037353-fa86306d-3f68-4abd-a9f3-b8e96da85902?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D38037353-fa86306d-3f68-4abd-a9f3-b8e96da85902%26entityType%3Dcollection%26workspaceId%3D3819a206-4f32-4b55-b83d-f01557f3b98a)
+```Clone the repo```
+```cd ./patients_record_system```
+```npm install```
+```create .env file DB_URI=mongodb://127.0.0.1:27017/PatientsRecord```
+```generate JWT_SECRET and add to .env```
+```set API_PORT=5000```
+```cd frontend/```
+```live-server --port=3000```
+```npm run dev```
+
+
+## API Routes Supported
+
+```POST http://localhost:5000/users```
+```GET http://localhost:5000/users```
+```GET http://localhost:5000/users/:userID```
+```POST http://localhost:5000/records```
+```GET http://localhost:5000/records```
+```GET http://localhost:5000/records/:recordID```
+
+
+## The Frontend
+
+The frontend is accessed on ```localhost:3000/```
+To access static pages
+```localhost:3000/registration.html```
+```localhost:3000/vitals.html```
+```localhost:3000/records.html```

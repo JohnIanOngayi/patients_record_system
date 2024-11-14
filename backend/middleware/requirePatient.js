@@ -2,6 +2,12 @@ import jwt from "jsonwebtoken";
 import { fetchPatient } from "../controllers/patient.controller.js";
 import { getPatient } from "../services/patient.service.js";
 
+/**
+ * This middleware will check if a valid JWT is attached to the request
+ * and if not, will return an Unauthorized 401 response.
+ * If the JWT is valid, it will find the associated Patient and attach it
+ * to the request so that it can be used in the next middleware or route.
+ */
 export async function requirePatient(req, res, next) {
   try {
     // jwt cookie value from current session request
