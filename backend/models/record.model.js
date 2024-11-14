@@ -35,6 +35,10 @@ const recordSchema = new mongoose.Schema(
       required: true,
       index: true,
     },
+
+    comment: {
+      type: String,
+    },
   },
   { timestamps: true },
 );
