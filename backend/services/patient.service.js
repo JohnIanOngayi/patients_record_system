@@ -32,7 +32,7 @@ export async function getAllPatients(query) {
 
 export async function getPatient(query) {
   try {
-    const patient = await Patient.findOne(query);
+    const patient = await Patient.findOne(query).populate("records");
     return patient;
   } catch (error) {
     logger.error(`getPatient Service Error: ${error}`);

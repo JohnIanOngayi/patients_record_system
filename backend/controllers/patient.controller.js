@@ -18,7 +18,7 @@ export async function registerPatient(req, res) {
 
     const newPatient = await addPatient(req.body);
     generateTokenandSetCookie(newPatient._id, res);
-    res.send(newPatient);
+    res.status(201).send(newPatient);
   } catch (error) {
     logger.error(`registerPatient Controller Error: ${error}`);
     res.sendStatus(500);

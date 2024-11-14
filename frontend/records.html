@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Patient Records</title>
     <link rel="stylesheet" href="css/records.css" />
-     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body>
     <main>
@@ -15,7 +15,7 @@
             <span>Filtered by date</span>
             <span>Patient Records</span>
           </span>
-          <form action="">
+          <form>
             <label>
               <input type="date" id="date" />
             </label>
@@ -37,14 +37,14 @@
               </tr>
             </thead>
             <tbody>
-              <tr class="data">
-                <th>
-                  <a href="#">Cash Matty</a>
-                  <span class="description"></span>
-                </th>
-                <td>$30</td>
-                <td class="current">$28</td>
-              </tr>
+              <!-- <tr class="data"> -->
+              <!--   <th> -->
+              <!--     <a href="#">Cash Matty</a> -->
+              <!--     <span class="description"></span> -->
+              <!--   </th> -->
+              <!--   <td>$30</td> -->
+              <!--   <td class="current">$28</td> -->
+              <!-- </tr> -->
             </tbody>
           </table>
         </div>
@@ -52,32 +52,46 @@
     </main>
     <script>
       $(document).ready(function () {
-        $("#submit").click(function (e) {
-          e.preventDefault();
-          let date = $("#date").val();
-          console.log('Booyah')
+        function fetchRecords(date = "") {
+          let url = "http://localhost:5000/records/";
+          if (date) {
+            url += `?date=${date}`;
+          }
+
           $.ajax({
-            url: `http://localhost:5000/records/?date=${date}`,
+            url: url,
             type: "GET",
             success: function (data) {
               let records = data;
               let fields = $("#fields");
               fields.empty();
               fields.append(
-                `<span class="year">Age</span><span class="year">BMI</span>`
+                `<span class="year">Age</span><span class="year">BMI</span>`,
               );
               let table = $("tbody");
               table.empty();
               records.forEach((record) => {
-                const age= new Date().getFullYear() - new Date(record.patient.dateOfBirth).getFullYear();
+                const age =
+                  new Date().getFullYear() -
+                  new Date(record.patient.dateOfBirth).getFullYear();
                 table.append(
                   `<tr class="data"><th><a href="#">${record.patient.firstName} ${record.patient.lastName}</a><span class="description"></span></th><td>${
                     age
-                  }</td><td class="current">${record.BMI}</td></tr>`
+                  }</td><td class="current">${record.BMI}</td></tr>`,
                 );
               });
             },
           });
+        }
+
+        // Fetch records on page load
+        fetchRecords();
+
+        // Fetch records on form submission
+        $("#filterForm").submit(function (e) {
+          e.preventDefault();
+          let date = $("#date").val();
+          fetchRecords(date);
         });
       });
     </script>

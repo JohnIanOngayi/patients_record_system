@@ -11,7 +11,7 @@ export async function registerRecord(req, res) {
     //   return res.send(req.patient);
     // }
     const newRecord = await addRecord(req);
-    res.send(newRecord);
+    res.status(201).send(newRecord);
   } catch (error) {
     logger.error(`registerRecord Controller Error: ${error}`);
     res.sendStatus(500);
@@ -42,8 +42,15 @@ export async function fetchRecord(req, res) {
 export async function fetchPatientRecords(req, res) {
   try {
     const patient = req.params._id;
-    const records = await getAllRecords({ patient });
-    res.status(200).send(records);
+    if (patient) {
+      const records = await getAllRecords({ patient });
+      return res.status(200).send(records);
+    }
+    const date = req.params.date;
+    if (date) {
+      const records = await getAllRecords({ patient });
+      return res.status(200).send(records);
+    }
   } catch (error) {
     logger.error(`fetchRecordsByPatient Controller Error: ${error}`);
   }
